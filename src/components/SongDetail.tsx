@@ -1,6 +1,8 @@
 import { useQuery } from "@apollo/client";
 import SONG_QUERY from "../graphql/fetchSong";
 import { useParams } from "react-router-dom";
+import LyricCreate from "./LyricCreate";
+import LyricList from "./LyricList";
 
 const SongDetail = () => {
   const { id } = useParams();
@@ -21,6 +23,8 @@ const SongDetail = () => {
         <div>
           <h2>{song.title}</h2>
           <p>ID: {song.id}</p>
+          <LyricCreate />
+          <LyricList lyrics={song.lyrics} />
         </div>
       ) : (
         <p>No song found</p>

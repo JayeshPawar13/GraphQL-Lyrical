@@ -21,7 +21,7 @@ const SongCreate = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    AddSong({ variables: { title }, refetchQueries: [{ query: SONGS_QUERY }] });
+    AddSong({ variables: { title } });
     setTitle("");
   };
 
