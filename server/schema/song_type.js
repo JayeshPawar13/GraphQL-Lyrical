@@ -1,26 +1,26 @@
-import mongoose from "mongoose";
 import {
-  GraphQLObjectType,
-  GraphQLString,
   GraphQLID,
   GraphQLList,
-} from "graphql";
-import LyricType from "./lyric_type.js"; // Use ES import syntax for LyricType
+  GraphQLObjectType,
+  GraphQLString,
+} from 'graphql';
+import mongoose from 'mongoose';
+import LyricType from './lyric_type.js';
 
-const Song = mongoose.model("song");
+const Song = mongoose.model('song');
 
 const SongType = new GraphQLObjectType({
-  name: "SongType",
+  name: 'SongType',
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
     lyrics: {
       type: new GraphQLList(LyricType),
       resolve(parentValue) {
-        return Song.findLyrics(parentValue.id); // Assuming findLyrics is defined in Song model
+        return Song.findLyrics(parentValue.id);
       },
     },
   }),
 });
 
-export default SongType; // Use ES export syntax for SongType
+export default SongType;
